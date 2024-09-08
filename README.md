@@ -40,4 +40,39 @@ En este caso invertida equivale a resultado se usa un objeto tipo StringBuilder
 para hacer el trabajo de split, reverse equivale a reverse y por ultimo toString hace el trabajo de join.
 luego mediante el metodo equals se compara cadena con invertida.
 
+Paso 3:
+
+Las pruebas a realizar seran las siguientes:
+
+ingresar espacios vacios.
+
+ingresar palabras que tengan mayusculas.
+
+ingresar palabras con espacios.
+
+ingresar un caracter.
+
+ingresar caracteres especiales.
+
+     @Test
+    void esPalindromo() {
+        assertTrue(Palindromos.esPalindromo(""));
+        assertTrue(Palindromos.esPalindromo("Ana"));
+        assertTrue(Palindromos.esPalindromo("a n a"));
+        assertTrue(Palindromos.esPalindromo("a"));
+        assertTrue(Palindromos.esPalindromo("@@@"));
+    }
+
+Al realizar las pruebas la unica que fallo fue la prueba con mayusculas.
+
+
+Continuando con las pruebas para las entradas "aca","acas","h"
+    
+    @Test
+    void esPalindromo() {
+    assertTrue(Palindromos.esPalindromo("aca"));
+    assertFalse(Palindromos.esPalindromo("acas"));
+    assertTrue(Palindromos.esPalindromo("h"));
+    }
+Al realizar las pruebas con estas entradas, no hubo ningun error.
 
