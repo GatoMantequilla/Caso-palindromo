@@ -15,5 +15,6 @@ public class Main {
         StringBuilder salida = new StringBuilder(texto).reverse();
         return salida.toString().equals(texto);
     }
+
     
 }
