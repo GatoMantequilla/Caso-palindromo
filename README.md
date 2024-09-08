@@ -1,127 +1,115 @@
-Caso Palíndromos - Pruebas Unitarias
 
-# Paso 1:
-    
-    function esPalindromo(cadena) {
-    
+# Caso Palíndromos - Pruebas Unitarias
+
+## Paso 1:
+
+```javascript
+function esPalindromo(cadena) {
     let resultado = "";
-    
     resultado = cadena.split('').reverse().join('');
-    
-    return cadena === resultado;*
+    return cadena === resultado;
+}
+```
 
-    }
-El metodo presentado toma una variable de entrada y decide si esta es un palindromo, esto lo hace tomando una variable llamada
-resultado que es del tipo let, luego a resultado se le asigna el valor de cadena luego de que esta pasara por los metodos
-split,reverse y join, por ultimo retorna la comparacion entre la variable resultado con la variable cadena sin procesar, si es igual
-este retorna true, en caso contrario false.
+Este método recibe una cadena como parámetro y determina si es un palíndromo. Para ello, crea una variable llamada `resultado` de tipo `let`, a la cual se le asigna la cadena invertida utilizando los métodos `split`, `reverse` y `join`. Finalmente, retorna el resultado de comparar la variable `resultado` con la cadena original; si son iguales, devuelve `true`, de lo contrario, devuelve `false`.
 
-Por ejemplo: si le ingresaramos la palabra perro esta nos devuelve False, ya que perro no es un palindromo, en cambio con ana
-el resultado seria True, ya que esta palabra si es un palindromo.
+Por ejemplo, si ingresamos la palabra "perro", el método devolverá `false`, ya que "perro" no es un palíndromo. En cambio, si ingresamos "ana", el resultado será `true`, ya que esta palabra es un palíndromo.
 
-Paso 2:
-    
-En el metodo tenemos 3 funciones principales:
+## Paso 2:
 
-split: Esta funcion toma un string y lo separa en caracteres para ponerlos en un array.
+En el método `esPalindromo` tenemos 3 funciones principales:
 
-reverse: Toma el array creado con el split y lo invierte.
+1. `split`: Esta función toma un string y lo divide en caracteres, colocando cada uno en un array.
+2. `reverse`: Invierte el orden del array creado por `split`.
+3. `join`: Une los caracteres del array invertido en un nuevo string.
 
-join: Una vez se invierte el array une los caracteres en un nuevo string
+Una vez realizado esto, el retorno de la función compara si el string ingresado es igual al string resultante después de aplicar las funciones. Dependiendo de esta comparación, devuelve `true` si es un palíndromo, o `false` si no lo es.
 
-Con eso realizado en el retorno de la funcion compara si es igual el string
-ingresado con el string creado mediante las funciones, dependiendo del resultado devuelve True o False.
+### Versión Equivalente
 
-    public static boolean esPalindromo(String cadena) {
+```java
+public static boolean esPalindromo(String cadena) {
     String invertida = new StringBuilder(cadena).reverse().toString();
     return cadena.equals(invertida);
-    }
-En este caso invertida equivale a resultado se usa un objeto tipo StringBuilder
-para hacer el trabajo de split, reverse equivale a reverse y por ultimo toString hace el trabajo de join.
-luego mediante el metodo equals se compara cadena con invertida.
+}
+```
 
-# Paso 3:
+En este caso, la variable `invertida` es equivalente a `resultado` en el método inicial. Aquí se utiliza un objeto de tipo `StringBuilder` para realizar el trabajo de `split`, el método `reverse()` cumple la misma función que `reverse`, y finalmente, el método `toString()` realiza el trabajo de `join`. Luego, mediante el método `equals()`, se compara la cadena original con la invertida para verificar si son iguales.
 
-Las pruebas a realizar seran las siguientes:
+## Paso 3:
 
-ingresar espacios vacios.
+Las pruebas a realizar serán las siguientes:
 
-ingresar palabras que tengan mayusculas.
+1. Ingresar espacios vacíos.
+2. Ingresar palabras que tengan mayúsculas.
+3. Ingresar palabras con espacios.
+4. Ingresar un carácter.
+5. Ingresar caracteres especiales.
 
-ingresar palabras con espacios.
+```java
+@Test
+void esPalindromo() {
+    assertTrue(Palindromos.esPalindromo(""));
+    assertTrue(Palindromos.esPalindromo("Ana"));
+    assertTrue(Palindromos.esPalindromo("a n a"));
+    assertTrue(Palindromos.esPalindromo("a"));
+    assertTrue(Palindromos.esPalindromo("@@@"));
+}
+```
 
-ingresar un caracter.
+Al realizar las pruebas, la única que falló fue la prueba con mayúsculas en la cadena.
 
-ingresar caracteres especiales.
+Continuando con las pruebas para las entradas "aca", "acas", "h":
 
-     @Test
-    void esPalindromo() {
-        assertTrue(Palindromos.esPalindromo(""));
-        assertTrue(Palindromos.esPalindromo("Ana"));
-        assertTrue(Palindromos.esPalindromo("a n a"));
-        assertTrue(Palindromos.esPalindromo("a"));
-        assertTrue(Palindromos.esPalindromo("@@@"));
-    }
-
-Al realizar las pruebas la unica que fallo fue la prueba con mayusculas.
-
-
-Continuando con las pruebas para las entradas "aca","acas","h"
-    
-    @Test
-    void esPalindromo() {
+```java
+@Test
+void esPalindromo() {
     assertTrue(Palindromos.esPalindromo("aca"));
     assertFalse(Palindromos.esPalindromo("acas"));
     assertTrue(Palindromos.esPalindromo("h"));
-    }
-Al realizar las pruebas con estas entradas, no hubo ningun error.
+}
+```
 
-# Paso 4:
+Al realizar las pruebas con estas entradas, no hubo ningún error.
 
-Si analizamos los casos propuestos y comparamos con los ya realizados
-creemos que los casos en que se puedan presentar problemas son el 1 y el 5,
-ya que en el caso se usa una entrada int y el metodo recibe string, y por otro
-lado ya confirmamos que al utilizar mayusculas el programa no funciona 
-correctamente.
+## Paso 4:
 
-nuevo metodo:
+Si analizamos los casos propuestos y los comparamos con los ya realizados, consideramos que los casos donde podrían presentarse problemas son el 1 y el 5. En el primer caso, se utiliza una entrada de tipo `int`, mientras que el método espera un `String`. Por otro lado, ya confirmamos que el programa no funciona correctamente cuando se ingresan mayúsculas.
 
-    public static <T> boolean esPalindromo(T entrada){
-    String texto = entrada.toString().replaceAll("\\s+","").toLowerCase();
+### Nuevo Método
+
+```java
+public static <T> boolean esPalindromo(T entrada) {
+    String texto = entrada.toString().replaceAll("\\s+", "").toLowerCase();
     StringBuilder salida = new StringBuilder(texto).reverse();
     return salida.toString().equals(texto);
-    }
-nuevas pruebas:
+}
+```
 
-    @Test
-    void esPalindromo() {
+El método `esPalindromo` recibe un parámetro de tipo genérico `<T>` y lo convierte en una cadena de texto utilizando `toString()`, elimina los espacios en blanco con `replaceAll("\\s+", "")` y lo convierte todo a minúsculas con `toLowerCase()`. Luego, invierte esta cadena utilizando `StringBuilder` y su método `reverse()`. Finalmente, compara la cadena invertida con el texto original (sin espacios y en minúsculas) y devuelve `true` si son iguales, lo que indica que es un palíndromo, o `false` en caso contrario.
 
-        assertTrue(Palindromos.esPalindromo("aca"));
-        assertFalse(Palindromos.esPalindromo("acas"));
-        assertTrue(Palindromos.esPalindromo("h"));
-        assertFalse(Palindromos.esPalindromo(200));
-        assertTrue(Palindromos.esPalindromo(""));
-        assertTrue(Palindromos.esPalindromo( "aaabccbaaa"));
-        assertFalse(Palindromos.esPalindromo("ahabccbaaa"));
-        assertTrue(Palindromos.esPalindromo("La tele letal"));
+### Nuevas Pruebas
 
-        System.out.println("Prueba aprobada correctamente...");
+```java
+@Test
+void esPalindromo() {
+    assertTrue(Palindromos.esPalindromo("aca"));
+    assertFalse(Palindromos.esPalindromo("acas"));
+    assertTrue(Palindromos.esPalindromo("h"));
+    assertFalse(Palindromos.esPalindromo(200));
+    assertTrue(Palindromos.esPalindromo(""));
+    assertTrue(Palindromos.esPalindromo("aaabccbaaa"));
+    assertFalse(Palindromos.esPalindromo("ahabccbaaa"));
+    assertTrue(Palindromos.esPalindromo("La tele letal"));
 
-Tomamos en consideracion los problemas que se nos presentaron en 
-nuestras pruebas, como el uso de los int y las mayusculas, pero ademas
-preevimos que a pesar que no se presento en nuestras pruebas fallos de 
-espaciado hay que considerar que hay distintos tipos, como el espaciado
-normal y el tabulado.
+    System.out.println("Prueba aprobada correctamente...");
+}
+```
 
-Es por eso que mejoramos las entradas del metodo con el uso de genericos,
-lo cual permite que el metodo reciba distintas entradas, en consecuencia 
-dentro del mismo se tuvo que usar la funcion toString para poder usar el 
-stringBuilder, tambien para prevenir el espaciado y el problema de las 
-mayusculas usamos replaceAll con \\s+ que toma todos los tipos de espaciado
-a lo largo del string y los reemplazamos con cadenas vacias, y luego 
-lowerCase para no tener mayusculas a coomparacion, ademas que ahora la
-comparacion se realiza con el texto formalizado y no con la entrada directa.
+### Mejoras en el Método
 
-Las pruebas nos ayudaron a entender mejor la manera en que java y nuestra 
-funcion de interpreta los distintos casos que se presentan y adaptar nuestro 
-metodo en funcion de eso. 
+Consideramos varios aspectos importantes al mejorar nuestro método. Identificamos problemas en nuestras pruebas iniciales, como la falta de manejo para valores enteros y diferencias en la capitalización. Además, aunque no detectamos fallos relacionados con el espaciado en las pruebas, tuvimos en cuenta que pueden existir diferentes tipos de espaciado, como espacios normales y tabulaciones.
+
+Para abordar estos problemas, optimizamos el método utilizando genéricos, lo que permite que acepte diversos tipos de entrada. Convertimos la entrada a `String` usando `toString()` para asegurarnos de que el `StringBuilder` pueda procesarla. Para manejar los espacios y diferencias de mayúsculas, empleamos `replaceAll("\\s+", "")` para eliminar todos los tipos de espaciado y `toLowerCase()` para eliminar la capitalización. Así, la comparación se realiza entre el texto procesado y no directamente con la entrada original.
+
+Las pruebas jugaron un papel crucial al ayudarnos a entender cómo Java y nuestro método interpretan diferentes casos. Nos permitieron identificar y corregir las limitaciones del método, asegurando que el código funcione correctamente con una variedad de entradas y condiciones.
