@@ -1,8 +1,10 @@
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PalindromosTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void esPalindromo() {
 
         assertTrue(Palindromos.esPalindromo("aca"));
