@@ -20,4 +20,24 @@ Por ejemplo: si le ingresaramos la palabra perro esta nos devuelve False, ya que
 el resultado seria True, ya que esta palabra si es un palindromo.
 
 Paso 2:
+    
+En el metodo tenemos 3 funciones principales:
+
+split: Esta funcion toma un string y lo separa en caracteres para ponerlos en un array.
+
+reverse: Toma el array creado con el split y lo invierte.
+
+join: Una vez se invierte el array une los caracteres en un nuevo string
+
+Con eso realizado en el retorno de la funcion compara si es igual el string
+ingresado con el string creado mediante las funciones, dependiendo del resultado devuelve True o False.
+
+    public static boolean esPalindromo(String cadena) {
+    String invertida = new StringBuilder(cadena).reverse().toString();
+    return cadena.equals(invertida);
+    }
+En este caso invertida equivale a resultado se usa un objeto tipo StringBuilder
+para hacer el trabajo de split, reverse equivale a reverse y por ultimo toString hace el trabajo de join.
+luego mediante el metodo equals se compara cadena con invertida.
+
 
