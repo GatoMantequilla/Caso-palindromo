@@ -12,7 +12,7 @@ class PalindromosTest {
         assertTrue(Palindromos.esPalindromo("h"));
         assertFalse(Palindromos.esPalindromo(200));
         assertTrue(Palindromos.esPalindromo(""));
-        assertTrue(Palindromos.esPalindromo( "aaabccbaaa"));
+        assertTrue(Palindromos.esPalindromo("aaabccbaaa"));
         assertFalse(Palindromos.esPalindromo("ahabccbaaa"));
         assertTrue(Palindromos.esPalindromo("La tele letal"));
 
